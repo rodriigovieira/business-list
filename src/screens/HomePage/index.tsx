@@ -53,9 +53,13 @@ const HomePage = () => {
       const secondBusinessDate = new Date(b.location_start_date);
 
       const isFirstOlderThanSeconds: boolean =
-        firstBusinessDate.getTime() > secondBusinessDate.getTime();
+        firstBusinessDate.getTime() < secondBusinessDate.getTime();
+      const hasSameTimestamp: boolean =
+        firstBusinessDate.getTime() === secondBusinessDate.getTime();
 
-      return isFirstOlderThanSeconds ? 1 : -1;
+      if (hasSameTimestamp) return 0;
+
+      return isFirstOlderThanSeconds ? -1 : 1;
     });
 
     dispatch({
