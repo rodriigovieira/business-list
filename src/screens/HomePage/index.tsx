@@ -40,7 +40,9 @@ const HomePage = () => {
       if (!location) return;
 
       const sortedCompanies: Array<any> = business.sort((a, b) => {
-        if (!a.location_1 || !b.location_1) return 0;
+        if (a.location_1 && !b.location_1) return -1;
+        if (!a.location_1 && b.location_1) return 0;
+        if (!a.location_1 && !b.location_1) return 0;
 
         const distanceFromA: number = getDistance(location, {
           lat: a.location_1.latitude,
@@ -51,7 +53,7 @@ const HomePage = () => {
           lng: b.location_1.longitude,
         });
 
-        return distanceFromA > distanceFromB ? 1 : -1;
+        return distanceFromA < distanceFromB ? -1 : 1;
       });
 
       dispatch({
@@ -69,11 +71,10 @@ const HomePage = () => {
       const firstBusinessDate = new Date(a.location_start_date);
       const secondBusinessDate = new Date(b.location_start_date);
 
-      if (firstBusinessDate.getTime() > secondBusinessDate.getTime()) {
-        return 1;
-      } else {
-        return -1;
-      }
+      const isFirstOlderThanSeconds: boolean =
+        firstBusinessDate.getTime() > secondBusinessDate.getTime();
+
+      return isFirstOlderThanSeconds ? 1 : -1;
     });
 
     dispatch({
