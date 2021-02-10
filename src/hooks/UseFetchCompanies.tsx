@@ -14,7 +14,6 @@ export const useFetchCompanies = () => {
     fetch(`${APIBaseUrl}/getActiveBusiness`)
       .then((res) => res.json())
       .then((res) => {
-        console.log({res});
         dispatch({
           type: LOAD_BUSINESS_LIST,
           payload: res,
