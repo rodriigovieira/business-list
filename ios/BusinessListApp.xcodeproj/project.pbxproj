@@ -148,7 +148,6 @@
 				A2D09FC5714A5957C3496EB4 /* Pods-BusinessListApp-tvOSTests.debug.xcconfig */,
 				BA2DDDD7CFBCBA082767D1E4 /* Pods-BusinessListApp-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
